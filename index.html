@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los — Process &amp; Equipment Engineering</title>
+<meta name="description" content="Portfolio of Los, undergraduate electrical engineering student (Nanosystems) pursuing process and equipment engineering roles in semiconductor fabrication.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="nav-id"><span class="dot"></span> LOS / EE — NANOSYSTEMS</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="assets/resume.pdf">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow reveal">UNDERGRADUATE ELECTRICAL ENGINEERING — UNIVERSITY OF HOUSTON</div>
+      <h1 class="reveal">I optimize the processes that <em>put circuits on silicon.</em></h1>
+      <p class="hero-sub reveal">
+        Nanosystems-concentration EE student building toward process and equipment
+        engineering roles in semiconductor fabrication — from plasma etch chemistry
+        to the data pipelines that keep a fab's yield honest.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#projects" class="btn primary">View projects →</a>
+        <a href="assets/resume.pdf" class="btn">Download résumé</a>
+        <a href="#contact" class="btn">Get in touch</a>
+      </div>
+
+      <div class="readout reveal">
+        <div class="readout-item">
+          <div class="label">Chemistry</div>
+          <div class="value">SF₆ / Ar</div>
+        </div>
+        <div class="readout-item glow">
+          <div class="label">RF Power</div>
+          <div class="value">100<span class="unit">W</span></div>
+        </div>
+        <div class="readout-item">
+          <div class="label">Pressure</div>
+          <div class="value">15<span class="unit">mTorr</span></div>
+        </div>
+        <div class="readout-item">
+          <div class="label">Tool</div>
+          <div class="value">Oxford ICP-100</div>
+        </div>
+        <div class="readout-item glow">
+          <div class="label">Status</div>
+          <div class="value">Optimizing</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">01 — Profile</div>
+          <h2>About</h2>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="reveal">
+          <p>
+            I'm an undergraduate electrical engineering student at the University of
+            Houston, concentrating in Nanosystems. My interest sits on the process
+            side of semiconductor manufacturing — the equipment, chemistry, and
+            statistical methods that turn a wafer into working devices at scale.
+          </p>
+          <p>
+            Most of my work lives at the intersection of hands-on fab process work
+            and the data-driven methods used to make it repeatable: process
+            optimization frameworks, ML models trained on real manufacturing data,
+            and the occasional robotics build to keep my hardware instincts sharp.
+          </p>
+          <p>
+            I'm currently aiming toward equipment engineer and fab/process engineer
+            roles — the kind of work happening at TSMC and Samsung Austin
+            Semiconductor.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <div class="skill-block">
+            <div class="k">Process &amp; Fab</div>
+            <div class="pill-row">
+              <span class="pill">Plasma etch (RIE/ICP)</span>
+              <span class="pill">Photolithography</span>
+              <span class="pill">AFM metrology</span>
+              <span class="pill">DOE / CCD</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="k">Data &amp; ML</div>
+            <div class="pill-row">
+              <span class="pill">Python</span>
+              <span class="pill">scikit-learn</span>
+              <span class="pill">Bayesian optimization</span>
+              <span class="pill">Random forests</span>
+            </div>
+          </div>
+          <div class="skill-block">
+            <div class="k">Hardware &amp; EE</div>
+            <div class="pill-row">
+              <span class="pill">Signals &amp; systems</span>
+              <span class="pill">Digital logic</span>
+              <span class="pill">C</span>
+              <span class="pill">Arduino</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">02 — Run Log</div>
+          <h2>Projects</h2>
+        </div>
+        <p class="section-desc">Selected process, data, and hardware work — logged the way a lab notebook entry would be.</p>
+      </div>
+
+      <div class="log stagger">
+
+        <article class="log-entry reveal">
+          <div class="log-meta">
+            <div class="log-id">RUN — UHNF·RIE</div>
+            <div class="log-date">Summer research, 8 weeks</div>
+            <div class="log-tags">
+              <span class="tag">Plasma etch</span>
+              <span class="tag">Bayesian opt.</span>
+              <span class="tag">AFM</span>
+            </div>
+          </div>
+          <div class="log-body">
+            <h3>RIE Process Optimization of Silicon (SF₆/Ar)</h3>
+            <div class="log-row">
+              <span class="k">Objective</span>
+              <span class="v">Optimize an SF₆/Ar reactive-ion etch recipe on an Oxford Instruments Plasmalab System 100 ICP at the UH Nanofabrication Facility.</span>
+            </div>
+            <div class="log-row">
+              <span class="k">Method</span>
+              <span class="v">Designed a physics-informed Bayesian optimization framework using a random-forest surrogate model and a Central Composite Design (CCD) to explore the process parameter space efficiently.</span>
+            </div>
+            <div class="log-row">
+              <span class="k">Result</span>
+              <span class="v">Direct experimental results (etch depth, AFM roughness) were inconclusive due to photolithography and surface-preparation challenges — so the framework itself, built to be robust to noisy experimental data, became the primary contribution.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="log-entry reveal">
+          <div class="log-meta">
+            <div class="log-id">RUN — SECOM·ML</div>
+            <div class="log-date">Independent project</div>
+            <div class="log-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Random forest</span>
+              <span class="tag">SMOTE</span>
+            </div>
+          </div>
+          <div class="log-body">
+            <h3>Wafer Failure Prediction on the SECOM Dataset</h3>
+            <div class="log-row">
+              <span class="k">Objective</span>
+              <span class="v">Predict semiconductor wafer pass/fail outcomes from sensor data, built in preparation for a TSMC equipment engineer internship application.</span>
+            </div>
+            <div class="log-row">
+              <span class="k">Method</span>
+              <span class="v">Cleaned and modeled the SECOM manufacturing dataset in Python using scikit-learn, applying a Random Forest classifier and SMOTE to address severe class imbalance between pass and fail wafers.</span>
+            </div>
+            <div class="log-row">
+              <span class="k">Result</span>
+              <span class="v">A working classification pipeline connecting fab sensor data to actionable yield predictions — the kind of tool an equipment engineer would use to flag at-risk lots early.</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="log-entry reveal">
+          <div class="log-meta">
+            <div class="log-id">RUN — ARM·01</div>
+            <div class="log-date">Ongoing hobby build</div>
+            <div class="log-tags">
+              <span class="tag">Robotics</span>
+              <span class="tag">Arduino</span>
+              <span class="tag">Hardware</span>
+            </div>
+          </div>
+          <div class="log-body">
+            <h3>Robotic Arm Build</h3>
+            <div class="log-row">
+              <span class="k">Objective</span>
+              <span class="v">Design and build a small robotic arm as a hands-on hardware project outside of coursework.</span>
+            </div>
+            <div class="log-row">
+              <span class="k">Method</span>
+              <span class="v">Combining mechanical assembly with microcontroller-driven motor control, building on earlier Arduino and breadboard experience.</span>
+            </div>
+            <div class="log-row">
+              <span class="k">Result</span>
+              <span class="v">In progress — keeps my hardware and control-systems instincts sharp alongside the process/data-focused work.</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-tag">03 — Background</div>
+          <h2>Experience &amp; Coursework</h2>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-when">University of Houston</div>
+          <h3>B.S. Electrical Engineering — Nanosystems Concentration</h3>
+          <p>Coursework spanning signals &amp; systems (Fourier/Laplace analysis, sampling theory, BIBO stability), digital logic and FSM design, C programming, and analog circuits &amp; instrumentation.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-when">Self-directed study</div>
+          <h3>Semiconductor Industry &amp; Fabrication Deep-Dive</h3>
+          <p>Structured self-study centered on MIT OCW 6.152, Campbell's fabrication textbook, and TSMC's nine process modules — alongside mapping career paths and the Austin fab job market.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact">
+      <div class="reveal">
+        <div class="section-tag">04 — Contact</div>
+        <h2>Open to equipment and process engineering conversations.</h2>
+        <div class="contact-links">
+          <a href="mailto:you@example.com" class="btn primary">Email me</a>
+          <a href="https://linkedin.com/in/yourprofile" class="btn">LinkedIn</a>
+          <a href="https://github.com/yourusername" class="btn">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© 2026 Los. Built with HTML, CSS &amp; a little JS.</span>
+  <span>Houston, TX</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
