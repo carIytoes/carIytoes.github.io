@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIE Process Optimization of Silicon — Los</title>
+<meta name="description" content="Case study: physics-informed Bayesian optimization of an SF6/Ar reactive-ion etch recipe at the UH Nanofabrication Facility.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-id"><span class="dot"></span> LOS / EE — NANOSYSTEMS</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">All projects</a></li>
+      <li><a href="assets/resume.pdf">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <header class="wrap detail-hero">
+    <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
+    <div class="detail-id reveal">RUN — UHNF·RIE</div>
+    <h1 class="reveal">RIE Process Optimization of Silicon (SF₆/Ar)</h1>
+    <div class="detail-meta reveal">
+      <span>Summer research, 8 weeks</span>
+      <span>·</span>
+      <span>UH Nanofabrication Facility</span>
+    </div>
+    <div class="detail-tags reveal" style="margin-top: 18px;">
+      <span class="tag">Plasma etch</span>
+      <span class="tag">Bayesian optimization</span>
+      <span class="tag">Random forest surrogate</span>
+      <span class="tag">Central Composite Design</span>
+      <span class="tag">AFM metrology</span>
+    </div>
+  </header>
+
+  <article class="wrap prose">
+
+    <h2 class="reveal">Background</h2>
+    <p class="reveal">
+      Reactive-ion etching (RIE) is one of the most process-sensitive steps in
+      semiconductor fabrication — small shifts in gas chemistry, RF power, or
+      pressure can change etch rate, anisotropy, and surface roughness in ways
+      that are expensive to characterize by brute-force experimentation. This
+      project worked on an SF₆/Ar etch recipe for silicon on an Oxford
+      Instruments Plasmalab System 100 ICP tool at the University of Houston
+      Nanofabrication Facility, with the goal of building a more efficient way
+      to search that process space than traditional one-factor-at-a-time
+      tuning.
+    </p>
+
+    <h2 class="reveal">Approach</h2>
+    <p class="reveal">
+      Rather than running an exhaustive parameter sweep, I designed a
+      physics-informed Bayesian optimization framework: a Central Composite
+      Design (CCD) laid out the initial experimental points across the
+      parameter space (RF power, pressure, gas flow ratio), and a random
+      forest surrogate model was trained on the resulting measurements to
+      predict etch outcomes at unsampled points. The optimizer then used that
+      surrogate to suggest which parameter combination to test next — the
+      same core idea used in hyperparameter tuning for machine learning
+      models, applied instead to a physical fabrication process.
+    </p>
+    <p class="reveal">
+      "Physics-informed" meant the search space and the surrogate model
+      weren't treated as a black box — known relationships between RF power,
+      ion bombardment energy, and etch anisotropy shaped how the parameter
+      bounds and priors were set, rather than letting the optimizer explore
+      blindly.
+    </p>
+
+    <h2 class="reveal">Measurement &amp; Metrology</h2>
+    <p class="reveal">
+      Etch outcomes were characterized using atomic force microscopy (AFM) to
+      measure surface roughness, alongside etch depth measurements, feeding
+      results back into the optimization loop after each run.
+    </p>
+
+    <h2 class="reveal">Results &amp; What I Learned</h2>
+    <p class="reveal">
+      The honest outcome: direct experimental results were inconclusive.
+      Photolithography and surface-preparation steps upstream of the etch
+      introduced enough variability that isolating the effect of the RIE
+      parameters themselves was difficult within the project's timeframe. So
+      instead of a clean "we improved etch rate by X%" result, the real
+      contribution ended up being the optimization framework itself — built
+      specifically to be robust to noisy, imperfect experimental data, which
+      is closer to the reality of process engineering than a textbook clean
+      dataset ever is.
+    </p>
+    <p class="reveal">
+      That distinction matters to me: a framework that degrades gracefully
+      under messy real-world conditions is arguably more useful than one that
+      only works when everything upstream is perfect.
+    </p>
+
+    <div class="callout reveal">
+      <div class="label">Fill in before publishing</div>
+      <p>
+        This is a good spot to add anything you can share concretely: specific
+        parameter ranges you explored, a chart of the CCD design points,
+        before/after AFM images, or a link to code/notebooks if you're able to
+        share them. Concrete artifacts (even partial ones) make this section
+        much stronger for recruiters.
+      </p>
+    </div>
+
+    <h2 class="reveal">Tools &amp; Techniques</h2>
+    <ul class="reveal">
+      <li><strong>Fabrication:</strong> Oxford Instruments Plasmalab System 100 ICP, SF₆/Ar chemistry</li>
+      <li><strong>Design of experiments:</strong> Central Composite Design (CCD)</li>
+      <li><strong>Modeling:</strong> Random forest surrogate model, Bayesian optimization</li>
+      <li><strong>Metrology:</strong> Atomic force microscopy (AFM)</li>
+    </ul>
+
+  </article>
+
+  <div class="wrap detail-footer-nav">
+    <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Los. Built with HTML, CSS &amp; a little JS.</span>
+  <span>Houston, TX</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

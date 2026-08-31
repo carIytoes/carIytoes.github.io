@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wafer Failure Prediction on SECOM — Los</title>
+<meta name="description" content="Case study: predicting semiconductor wafer pass/fail outcomes from sensor data using a random forest classifier and SMOTE.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-id"><span class="dot"></span> LOS / EE — NANOSYSTEMS</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">All projects</a></li>
+      <li><a href="assets/resume.pdf">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <header class="wrap detail-hero">
+    <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
+    <div class="detail-id reveal">RUN — SECOM·ML</div>
+    <h1 class="reveal">Wafer Failure Prediction on the SECOM Dataset</h1>
+    <div class="detail-meta reveal">
+      <span>Independent project</span>
+      <span>·</span>
+      <span>Built ahead of TSMC internship application</span>
+    </div>
+    <div class="detail-tags reveal" style="margin-top: 18px;">
+      <span class="tag">Python</span>
+      <span class="tag">scikit-learn</span>
+      <span class="tag">Random forest</span>
+      <span class="tag">SMOTE</span>
+      <span class="tag">Class imbalance</span>
+    </div>
+  </header>
+
+  <article class="wrap prose">
+
+    <h2 class="reveal">Background</h2>
+    <p class="reveal">
+      The SECOM dataset is a well-known semiconductor manufacturing dataset:
+      sensor readings collected during the fabrication process, paired with a
+      pass/fail label for each wafer. It's a realistic proxy for the kind of
+      problem an equipment or process engineer actually deals with — hundreds
+      of noisy sensor signals, and a rare but costly failure outcome. I built
+      this project specifically ahead of a TSMC equipment engineer internship
+      application, wanting hands-on experience connecting fab sensor data to
+      an actual predictive model rather than just reading about it.
+    </p>
+
+    <h2 class="reveal">The Core Challenge: Class Imbalance</h2>
+    <p class="reveal">
+      Wafer failures are — by design of a working fab — rare relative to
+      passes. That's good for a fab, but it's a classic problem for a
+      classifier: a naive model can get high accuracy just by predicting
+      "pass" every time, while completely failing at the one thing that
+      actually matters, catching failures. Addressing this properly was the
+      central technical problem of the project.
+    </p>
+
+    <h2 class="reveal">Approach</h2>
+    <p class="reveal">
+      After cleaning the dataset in Python (handling missing sensor readings
+      and irrelevant/constant features), I applied <strong>SMOTE</strong>
+      (Synthetic Minority Oversampling Technique) to rebalance the training
+      data by generating synthetic examples of the minority "fail" class,
+      rather than simply duplicating existing failure cases. A
+      <strong>random forest classifier</strong> was then trained on the
+      rebalanced data — chosen partly for its resistance to overfitting on
+      high-dimensional, noisy sensor data, and partly because feature
+      importances from a random forest are directly interpretable, which
+      matters in a manufacturing context where "why did the model flag this
+      wafer" is often as important as the flag itself.
+    </p>
+
+    <h2 class="reveal">Results</h2>
+    <p class="reveal">
+      The end result is a working classification pipeline that takes raw fab
+      sensor data in and returns a pass/fail risk prediction — the kind of
+      tool that, in a real fab setting, would let an equipment engineer flag
+      at-risk lots earlier in the process rather than catching failures only
+      at final test.
+    </p>
+
+    <div class="callout reveal">
+      <div class="label">Fill in before publishing</div>
+      <p>
+        Add your actual model metrics here — precision/recall on the minority
+        class (more meaningful than raw accuracy given the imbalance), a
+        confusion matrix, or which sensor features came out as most
+        important. A link to the GitHub repo or notebook would also strengthen
+        this a lot if you're comfortable sharing it.
+      </p>
+    </div>
+
+    <h2 class="reveal">Tools &amp; Techniques</h2>
+    <ul class="reveal">
+      <li><strong>Language:</strong> Python</li>
+      <li><strong>Libraries:</strong> scikit-learn, pandas</li>
+      <li><strong>Modeling:</strong> Random forest classifier</li>
+      <li><strong>Imbalance handling:</strong> SMOTE</li>
+    </ul>
+
+  </article>
+
+  <div class="wrap detail-footer-nav">
+    <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Los. Built with HTML, CSS &amp; a little JS.</span>
+  <span>Houston, TX</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
