@@ -32,7 +32,10 @@ if (prefersReducedMotion) {
 const typingTarget = document.getElementById('typing-target');
 
 if (typingTarget) {
-  const fullText = typingTarget.textContent.trim().replace(/\s+/g, ' ');
+  const rawHTML = typingTarget.innerHTML;
+  const segments = rawHTML
+    .split(/<br\s*\/?>/i)
+    .map(seg => seg.trim().replace(/\s+/g, ' '));
 
   // Lock in the paragraph's final height before clearing it,
   // so elements below don't shift while the text types out.
@@ -49,19 +52,33 @@ if (typingTarget) {
   typingTarget.appendChild(cursorSpan);
 
   if (prefersReducedMotion) {
-    textSpan.textContent = fullText;
+    segments.forEach((seg, idx) => {
+      textSpan.appendChild(document.createTextNode(seg));
+      if (idx < segments.length - 1) textSpan.appendChild(document.createElement('br'));
+    });
     cursorSpan.remove();
   } else {
-    let i = 0;
-    const typingSpeed = 20; // ms per character
+    let segIndex = 0;
+    let charIndex = 0;
+    const typingSpeed = 18; // ms per character — keep whatever value you'd already set
 
     function typeNextChar() {
-      if (i < fullText.length) {
-        textSpan.textContent += fullText[i];
-        i++;
+      if (segIndex >= segments.length) {
+        cursorSpan.remove();
+        return;
+      }
+      const currentSegment = segments[segIndex];
+      if (charIndex < currentSegment.length) {
+        textSpan.appendChild(document.createTextNode(currentSegment[charIndex]));
+        charIndex++;
         setTimeout(typeNextChar, typingSpeed);
       } else {
-        cursorSpan.remove(); // stop blinking once typing is done
+        segIndex++;
+        charIndex = 0;
+        if (segIndex < segments.length) {
+          textSpan.appendChild(document.createElement('br'));
+        }
+        setTimeout(typeNextChar, typingSpeed);
       }
     }
 
