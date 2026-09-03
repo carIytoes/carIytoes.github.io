@@ -85,3 +85,35 @@ if (typingTarget) {
     setTimeout(typeNextChar, 400); // brief pause before typing starts
   }
 }
+
+// Lightbox: click any image inside .media-slot to view it expanded
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.querySelector('.lightbox-close');
+const mediaImages = document.querySelectorAll('.media-slot img');
+
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt;
+  lightbox.classList.add('is-open');
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('is-open');
+}
+
+mediaImages.forEach((img) => {
+  img.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+
+// Also close when clicking the dark backdrop itself (not the image)
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+// Also close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
