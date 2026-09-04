@@ -814,6 +814,19 @@ footer {
 
 .prose strong { color: var(--ink); }
 
+.prose a {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--line);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.prose a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
 .callout {
   border: 1px dashed var(--line);
   background: var(--panel);

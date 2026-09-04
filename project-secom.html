@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wafer Failure Prediction on SECOM — Los</title>
-<meta name="description" content="Case study: predicting semiconductor wafer pass/fail outcomes from sensor data using a random forest classifier and SMOTE.">
+<title>Wafer Failure Prediction Model on SECOM Manufacturing Data</title>
+<meta name="description" content="Predicting semiconductor wafer pass/fail outcomes from sensor data using a random forest classifier and SMOTE.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 
 <nav class="nav">
   <div class="wrap nav-inner">
-    <a href="index.html" class="nav-id"><span class="dot"></span> LOS / EE — NANOSYSTEMS</a>
+    <a href="index.html" class="nav-id"><span class="dot"></span> CARLYTOES</a>
     <ul class="nav-links">
       <li><a href="index.html#projects">All projects</a></li>
       <li><a href="assets/resume.pdf">Resume</a></li>
@@ -26,19 +26,18 @@
 <main>
   <header class="wrap detail-hero">
     <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
-    <div class="detail-id reveal">RUN — SECOM·ML</div>
-    <h1 class="reveal">Wafer Failure Prediction on the SECOM Dataset</h1>
+    <div class="detail-id reveal">SECOM · Machine Learning</div>
+    <h1 class="reveal">Wafer Failure Prediction Model on SECOM Dataset</h1>
     <div class="detail-meta reveal">
       <span>Independent project</span>
-      <span>·</span>
-      <span>Built ahead of TSMC internship application</span>
+      <span></span>
+      <span></span>
     </div>
     <div class="detail-tags reveal" style="margin-top: 18px;">
       <span class="tag">Python</span>
       <span class="tag">scikit-learn</span>
       <span class="tag">Random forest</span>
       <span class="tag">SMOTE</span>
-      <span class="tag">Class imbalance</span>
     </div>
   </header>
 
@@ -46,26 +45,33 @@
 
     <h2 class="reveal">Background</h2>
     <p class="reveal">
-      The SECOM dataset is a well-known semiconductor manufacturing dataset:
-      sensor readings collected during the fabrication process, paired with a
-      pass/fail label for each wafer. It's a realistic proxy for the kind of
-      problem an equipment or process engineer actually deals with — hundreds
-      of noisy sensor signals, and a rare but costly failure outcome. I built
-      this project specifically ahead of a TSMC equipment engineer internship
-      application, wanting hands-on experience connecting fab sensor data to
-      an actual predictive model rather than just reading about it.
+      The Semiconductor Manufacturing (SECOM) dataset is a well-known public dataset provided by UC Irvine within the university's
+      <a href="https://archive.ics.uci.edu/ml/datasets/secom" target="_blank" rel="noopener">Machine Learning Repository.</a>
+      The dataset comes from a modern manufacturing process for 1,567 wafers and includes 591 sensor/process measurement readings
+      collected during the process. The goal of this project was to build a model that could predict whether a wafer would pass or fail
+      based on downstream sensor readings as early as possible. 
     </p>
 
-    <h2 class="reveal">The Core Challenge: Class Imbalance</h2>
+    <h2 class="reveal">The Core Challenges: Messy Data and Class Imbalance</h2>
     <p class="reveal">
-      Wafer failures are — by design of a working fab — rare relative to
-      passes. That's good for a fab, but it's a classic problem for a
-      classifier: a naive model can get high accuracy just by predicting
-      "pass" every time, while completely failing at the one thing that
-      actually matters, catching failures. Addressing this properly was the
-      central technical problem of the project.
+      The dataset is structured so that each row corresponds to an individual wafer and every column corresponds to a different sensor
+      reading (1,567 rows, 590 columns, 1 column for pass/fail). The dataset pairs the wafers with pass/fail labels which is nice, but it is          very messy. There are hundreds of noisy sensor signals and over 40,000 missing values across the set. On one hand, this makes working
+      with the data tricky from a cleaning/preprocessing perspective. However, the dataset simultaneously becomes a useful and realistic
+      proxy for what equipment and process engineers deal with on a regular basis within fabs.
     </p>
 
+    <p class="reveal">
+      On top of the mess, there is an issue with pass/fail class imbalance. Of the 1,567 wafers, 1,463 are labeled as pass and 104 are
+      labeled as fail. In other words, the data is heavily skewed with passing wafers, accounting for 93% of the total wafers and 
+      outnumbering fails by a ratio of 14 pass to 1 fail. This is a desirable outcome for a fab (no one wants bad wafers), but it becomes
+      an issue for building a reliable prediction model as a model can technically guess "pass" every time and still be 93% accurate using 
+      the SECOM data. 
+    </p>
+
+    <p class="reveal">
+      Thus leaves two problems to fix: clean up the mess, and balance out the data. <strong>Challenge accepted >:)</strong>
+    </p>
+ 
     <h2 class="reveal">Approach</h2>
     <p class="reveal">
       After cleaning the dataset in Python (handling missing sensor readings
