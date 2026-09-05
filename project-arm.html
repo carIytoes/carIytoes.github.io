@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robotic Arm Build — Los</title>
+<title>6DOF Robot Arm</title>
 <meta name="description" content="Case study: designing and building a small robotic arm with microcontroller-driven motor control.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
 
 <nav class="nav">
   <div class="wrap nav-inner">
-    <a href="index.html" class="nav-id"><span class="dot"></span> LOS / EE — NANOSYSTEMS</a>
+    <a href="index.html" class="nav-id"><span class="dot"></span> CARLYTOES</a>
     <ul class="nav-links">
       <li><a href="index.html#projects">All projects</a></li>
       <li><a href="assets/resume.pdf">Resume</a></li>
@@ -26,58 +26,58 @@
 <main>
   <header class="wrap detail-hero">
     <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
-    <div class="detail-id reveal">RUN — ARM·01</div>
-    <h1 class="reveal">Robotic Arm Build</h1>
+    <div class="detail-id reveal">ROBOTICS · ARDUINO</div>
+    <h1 class="reveal">6 Degree-of-Freedom Robotic Arm</h1>
     <div class="detail-meta reveal">
-      <span>Ongoing hobby build</span>
+      <span>Hobby build</span>
     </div>
     <div class="detail-tags reveal" style="margin-top: 18px;">
       <span class="tag">Robotics</span>
       <span class="tag">Arduino</span>
       <span class="tag">Motor control</span>
-      <span class="tag">Hardware</span>
+      <span class="tag">Fusion 360</span>
     </div>
   </header>
 
-  <article class="wrap prose">
+<div class="wrap detail-body">
+  <article class="prose">
 
     <h2 class="reveal">Background</h2>
     <p class="reveal">
-      Outside of coursework and process-focused research, I wanted a project
-      that kept my hands-on hardware and control-systems skills sharp — the
-      kind of tactile, build-it-yourself work that's easy to lose touch with
-      when most of a semester is spent on theory and simulation. A small
-      robotic arm fit the bill: a well-scoped mechanical and electrical
-      project with plenty of room to go deeper over time.
+      I've always found robotics/mechatronics interesting. Working on robots incorporates mechanical, electrical, and software engineering            knowledge and demands skills from all three domains. I wanted to work on a project that allowed me to apply my hardware and
+      control-systems skills while also gaining experience using CAD and simulation software. A robot arm checked all the boxes.
     </p>
 
     <h2 class="reveal">Approach</h2>
     <p class="reveal">
-      The build combines mechanical assembly with microcontroller-driven
-      motor control, building on earlier experience with Arduino and
-      breadboard prototyping. The scope covers both sides of the problem: the
-      physical structure and joints of the arm, and the control logic that
-      drives it — reading inputs, translating them into motor commands, and
-      coordinating multiple joints to move predictably.
+      There was a lot I needed to learn before I could even start working on the arm, the first of which being Fusion 360. I jumped
+      straight into small design projects to familiarize myself with Autodesk and understand the tools available within the environment. I       didn't want to get stuck in tutorial limbo, so after a few designs I decided I was ready to start on the arm (I was not at all ready).
+    </p>
+
+    <p class="reveal">
+      After a bit of struggling I finally completed the base of the arm, importing models for the Arduino, MG995 servo motor, and servo motor
+      horn to ensure proper fit and movement of the top assembly. Working through the design with limited CAD experience is an iterative
+      process that truly highlights the importance of design-for-assembly and fully-constrained CAD practices.
     </p>
 
     <h2 class="reveal">Status</h2>
     <p class="reveal">
-      This project is still in progress. I'm keeping this page intentionally
-      updated as the build evolves rather than presenting it as a finished
-      product — which honestly says more about how I actually work than a
-      polished final writeup would.
+      This project is very much still in its early stages. I'm keeping this page intentionally updated as the project evolves to document the         entire engineering process from concept -> design -> build. 
     </p>
 
+    <p class="reveal">
+      The current challenge is designing the waist joint that connects the first arm link to the base of the arm. The joint has to not only
+      allow for pitch movement, but it needs to house the second MG995 servo while simultaneously being light enough for MG995 #1 movement and       strong enough to support the weight of the rest of the arm.
+
+    <p class="reveal">
+
+
     <div class="callout reveal">
-      <div class="label">Fill in before publishing</div>
+      <div class="label">6 DOF Arm Model</div>
       <p>
-        This is a great candidate for photos or a short video of the arm in
-        motion — hardware projects read much stronger with visual proof than
-        text alone. Also worth adding: what microcontroller/motor drivers
-        you're using, degrees of freedom, and what you'd tackle next (e.g.
-        inverse kinematics, a control interface, etc.).
+
       </p>
+      <img src="assets/ARMINSPO.png" alt="6 DOF Arm Model" class="callout-img">
     </div>
 
     <h2 class="reveal">Tools &amp; Techniques</h2>
@@ -88,6 +88,24 @@
 
   </article>
 
+ <aside class="detail-media detail-media--sticky">
+    <div class="media-item reveal">
+      <div class="media-slot">
+        <img src="assets/ARM1.png" alt="Fully enclosed robot arm base">
+      </div>
+      <p class="media-caption">Fully enclosed robot arm base</p>
+    </div>
+
+    <div class="media-item reveal">
+      <div class="media-slot">
+        <img src="assets/ARM2.png" alt="Internal Arduino housing with MG995 servo for 360-degree rotation">
+      </div>
+      <p class="media-caption">Internal Arduino housing with MG995 servo for 360-degree rotation</p>
+    </div>
+
+  </aside>
+</div>
+
   <div class="wrap detail-footer-nav">
     <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
   </div>
@@ -97,6 +115,11 @@
   <span>© 2026 Los. Built with HTML, CSS &amp; a little JS.</span>
   <span>Houston, TX</span>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close image">✕</button>
+  <img src="" alt="" id="lightbox-img">
+</div>
 
 <script src="script.js"></script>
 </body>
