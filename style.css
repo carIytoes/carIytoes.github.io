@@ -735,6 +735,17 @@ footer {
   gap: 32px;
 }
 
+.detail-media--sticky {
+  position: sticky;
+  top: 90px;
+}
+
+@media (max-width: 900px) {
+  .detail-media--sticky {
+    position: static;
+  }
+}
+
 .media-slot {
   border: 1px solid var(--line);
   background: var(--panel);

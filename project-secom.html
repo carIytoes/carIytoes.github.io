@@ -41,7 +41,8 @@
     </div>
   </header>
 
-  <article class="wrap prose">
+<div class="wrap detail-body">
+  <article class="prose">
 
     <h2 class="reveal">Background</h2>
     <p class="reveal">
@@ -55,7 +56,7 @@
     <h2 class="reveal">The Core Challenges: Messy Data and Class Imbalance</h2>
     <p class="reveal">
       The dataset is structured so that each row corresponds to an individual wafer and every column corresponds to a different sensor
-      reading (1,567 rows, 590 columns, 1 column for pass/fail). The dataset pairs the wafers with pass/fail labels which is nice, but it is          very messy. There are hundreds of noisy sensor signals and over 40,000 missing values across the set. On one hand, this makes working
+      reading (1,567 rows, 590 columns, 1 column for pass/fail). The dataset pairs wafers with pass/fail labels which is nice, but it is              very messy. There are hundreds of noisy sensor signals and over 40,000 missing values across the set. On one hand, this makes working
       with the data tricky from a cleaning/preprocessing perspective. However, the dataset simultaneously becomes a useful and realistic
       proxy for what equipment and process engineers deal with on a regular basis within fabs.
     </p>
@@ -74,48 +75,63 @@
  
     <h2 class="reveal">Approach</h2>
     <p class="reveal">
-      After cleaning the dataset in Python (handling missing sensor readings
-      and irrelevant/constant features), I applied <strong>SMOTE</strong>
-      (Synthetic Minority Oversampling Technique) to rebalance the training
-      data by generating synthetic examples of the minority "fail" class,
-      rather than simply duplicating existing failure cases. A
-      <strong>random forest classifier</strong> was then trained on the
-      rebalanced data — chosen partly for its resistance to overfitting on
-      high-dimensional, noisy sensor data, and partly because feature
-      importances from a random forest are directly interpretable, which
-      matters in a manufacturing context where "why did the model flag this
-      wafer" is often as important as the flag itself.
+     The first step was to clean the dataset. This was a bit straightforward as columns that were more than 50% empty could be dropped (more         than half empty = irrelevant), and any remaining missing values were replaced by that column's median value. Filling gaps with median           values does affect variance calculations since the same value is repeatedly inserted, but it's a quick and easy way to complete                 columns while preserving the data's distribution as opposed to using mean values which are sensitive to outliers.
+    </p>
+
+    <p class="reveal">
+     Once the data was cleaned, the class imbalance issue was addressed using <strong>SMOTE: Synthetic Minority Oversampling      Technique</strong>. SMOTE generates new artificial data points in a dataset for the underrepresented class, which are "fail" wafers in          this case. Instead of simply duplicating "fail" rows, SMOTE looks at an existing failure data point, finds other failures that are similar      to it, and generates a synthetic point somewhere in between them. This makes new points blend characteristics of real failures while      leveling out the pass/fail ratio. 
+    </p>
+
+    <p class="reveal">
+     A random forest classifier was then trained using 80% of the clean rebalanced data, reserving 586 wafers to be used for      testing model performance. The <strong>scikit-learn</strong> Python library was used to create useful matrices to breakdown accuracy and      precision statistics. 
     </p>
 
     <h2 class="reveal">Results</h2>
     <p class="reveal">
-      The end result is a working classification pipeline that takes raw fab
-      sensor data in and returns a pass/fail risk prediction — the kind of
-      tool that, in a real fab setting, would let an equipment engineer flag
-      at-risk lots earlier in the process rather than catching failures only
-      at final test.
+     The end result is a model that takes raw fab sensor data and returns a pass/fail risk prediction, allowing for early at-risk detection
+     rather than catching failures only at the final test. From the 586 unseen wafers, the model correctly predicted 302 wafers to pass and          279 to fail. There were 4 wafers that were predicted to fail but actually passed, and only 1 wafer was predicted to pass but actually           failed. The model ultimately has a 99% accuracy rate on wafer predictions.
+    </p>
+
+    <p class="reveal">
+     In the context of a real fab, the 4 wafers that were predicted to fail but actually passed would result in a bit of wasted time                 checking wafers that were fine to begin with. The more important consideration is the 1 wafer that was predicted to pass but actually           failed final testing, as this would potentially allow a bad wafer to continue downstream. However, 1 bad wafer out of 280 is 0.4%, which      is a very favorable percentage and shows the accuracy and robustness of the predictor model. These results highlight how machine learning
+     models can be used within modern fabs to reduce failure rates and ensure passing wafers make it past final testing.
     </p>
 
     <div class="callout reveal">
-      <div class="label">Fill in before publishing</div>
+      <div class="label">Classification Report for 586 Test Wafers</div>
       <p>
-        Add your actual model metrics here — precision/recall on the minority
-        class (more meaningful than raw accuracy given the imbalance), a
-        confusion matrix, or which sensor features came out as most
-        important. A link to the GitHub repo or notebook would also strengthen
-        this a lot if you're comfortable sharing it.
+
       </p>
+      <img src="assets/SECOM.png" alt="Classification Report for 586 Test Wafers" class="callout-img">
     </div>
 
     <h2 class="reveal">Tools &amp; Techniques</h2>
     <ul class="reveal">
       <li><strong>Language:</strong> Python</li>
-      <li><strong>Libraries:</strong> scikit-learn, pandas</li>
+      <li><strong>Libraries:</strong> scikit-learn, imbalanced-learn, pandas</li>
       <li><strong>Modeling:</strong> Random forest classifier</li>
       <li><strong>Imbalance handling:</strong> SMOTE</li>
     </ul>
 
   </article>
+
+  <aside class="detail-media detail-media--sticky">
+    <div class="media-item reveal">
+      <div class="media-slot">
+        <img src="assets/SMOTE.png" alt="Illustration of SMOTE Oversampling">
+      </div>
+      <p class="media-caption">Illustration of SMOTE Oversampling <a href="https://python.plainenglish.io/balancing-the-scales-how-smote-transforms-machine-learning-with-imbalanced-data-a6d3367254cd" target="_blank" rel="noopener">(Source)</a></p>
+    </div>
+
+    <div class="media-item reveal">
+      <div class="media-slot">
+        <img src="assets/TopSensors.png" alt="Top 20 sensors">
+      </div>
+      <p class="media-caption">Top 20 Most Important Sensors from SECOM Dataset</p>
+    </div>
+
+  </aside>
+</div>
 
   <div class="wrap detail-footer-nav">
     <a href="index.html#projects" class="back-link reveal">← Back to all projects</a>
@@ -126,6 +142,11 @@
   <span>© 2026 Los. Built with HTML, CSS &amp; a little JS.</span>
   <span>Houston, TX</span>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close image">✕</button>
+  <img src="" alt="" id="lightbox-img">
+</div>
 
 <script src="script.js"></script>
 </body>
