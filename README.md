@@ -1,11 +1,14 @@
 # Portfolio Site
 
-Come check me out!
+Come check me out
 
 ## Structure
 ```
-index.html      → all content lives here
-style.css       → visual design (dark "process readout" theme)
-script.js       → scroll fade-in animations
-assets/         → drop your resume.pdf and any images here
+index.html            → Home page
+project-rie.html      → RIE optimization research
+project-secom.html    → Failure predictor project
+project-arm.html      → Robot arm project
+style.css             → Visual design
+script.js             → Style animations
+assets/               → Holding my stuff
 ```
