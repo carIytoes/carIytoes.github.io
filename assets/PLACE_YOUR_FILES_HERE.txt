@@ -1,3 +1,0 @@
-Put these here:
-- resume.pdf  (linked from the nav bar and hero button)
-- any images you want to use (e.g. headshot.jpg)
