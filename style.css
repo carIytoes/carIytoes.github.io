@@ -140,6 +140,59 @@ body::before {
   border-bottom-color: var(--accent-2);
 }
 
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.nav-toggle:hover {
+  border-color: var(--accent-2);
+}
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-id {
+    font-size: 12px;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 8px var(--pad) 16px;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links li {
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 0;
+  }
+}
+
 /* =========================================================
    HERO — equipment readout panel
    ========================================================= */

@@ -86,34 +86,56 @@ if (typingTarget) {
   }
 }
 
+
 // Lightbox: click any image inside .media-slot to view it expanded
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.querySelector('.lightbox-close');
-const mediaImages = document.querySelectorAll('.media-slot img');
 
-function openLightbox(src, alt) {
-  lightboxImg.src = src;
-  lightboxImg.alt = alt;
-  lightbox.classList.add('is-open');
+if (lightbox && lightboxImg && lightboxClose) {
+  const mediaImages = document.querySelectorAll('.media-slot img');
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add('is-open');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+  }
+
+  mediaImages.forEach((img) => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 }
 
-function closeLightbox() {
-  lightbox.classList.remove('is-open');
+// Mobile nav toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close the menu after tapping a link, so it doesn't stay open
+  // when the page scrolls to a new section
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', false);
+    });
+  });
 }
-
-mediaImages.forEach((img) => {
-  img.addEventListener('click', () => openLightbox(img.src, img.alt));
-});
-
-lightboxClose.addEventListener('click', closeLightbox);
-
-// Also close when clicking the dark backdrop itself (not the image)
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) closeLightbox();
-});
-
-// Also close on Escape key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeLightbox();
-});
